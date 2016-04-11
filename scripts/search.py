@@ -4,6 +4,7 @@ import geocoder
 
 data = pd.read_csv('resources/Canadian Arctic Archipelago.csv')
 
+
 def convert_dms(coord):
     match = re.search(r'(\d+)\D+(\d+)\D+([NSWE])', coord)
     if match:
@@ -18,7 +19,7 @@ def convert_dms(coord):
 
 print 'name,lat,lng,distance,lat-osm,lng-osm'
 for index, row in data.iterrows():
-    g = geocoder.osm(row['name'])
+    g = geocoder.osm('{}'.format(row['name']))
     distance = geocoder.distance(g.latlng, [row['lat'], row['lng']])
     print '{},{},{},{},{},{}'.format(
         row['name'],
